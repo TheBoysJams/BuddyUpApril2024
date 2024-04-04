@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody3D
 
 
-const SPEED = 3.5
+const SPEED = 4
 
 var player
 
