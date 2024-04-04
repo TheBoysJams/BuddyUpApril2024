@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dh6exh6n7fif0"]
+[gd_scene load_steps=12 format=3 uid="uid://dh6exh6n7fif0"]
 
 [ext_resource type="PackedScene" uid="uid://c6rid1vcpoikx" path="res://Scenes/Player/player.tscn" id="1_aokbp"]
 [ext_resource type="Shader" uid="uid://26thme6tl0k2" path="res://Resources/Shader/dirt_shader.tres" id="1_votdt"]
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_yhhjm"]
+[ext_resource type="PackedScene" uid="uid://demk7i7o0m5q7" path="res://Scenes/Enemy/enemy.tscn" id="4_l2uc1"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_55g6w"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vdnqm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,22 +37,28 @@ size = Vector2(100, 100)
 [node name="Level" type="Node3D"]
 script = ExtResource("1_yhhjm")
 
-[node name="Environment" type="Node" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_aokbp")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+[node name="Enemy" parent="." instance=ExtResource("4_l2uc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251198, 0, -4.29745)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_55g6w")
+
+[node name="Environment" type="Node" parent="NavigationRegion3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="NavigationRegion3D/Environment"]
 environment = SubResource("Environment_pf17v")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Environment"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_17uyf")
 
-[node name="Ground" type="MeshInstance3D" parent="Environment/StaticBody3D"]
+[node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
 mesh = SubResource("PlaneMesh_k4koo")
-skeleton = NodePath("../../..")
-
-[node name="Player" parent="." instance=ExtResource("1_aokbp")]
+skeleton = NodePath("../../../..")
