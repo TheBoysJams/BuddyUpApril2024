@@ -13,11 +13,13 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * 0.005)
 		camera_3d.rotate_x(-event.relative.y * 0.005)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, -PI/2, PI/2)
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
