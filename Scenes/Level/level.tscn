@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh6exh6n7fif0"]
+[gd_scene load_steps=10 format=3 uid="uid://dh6exh6n7fif0"]
 
 [ext_resource type="PackedScene" uid="uid://c6rid1vcpoikx" path="res://Scenes/Player/player.tscn" id="1_aokbp"]
+[ext_resource type="Shader" uid="uid://26thme6tl0k2" path="res://Resources/Shader/dirt_shader.tres" id="1_votdt"]
+[ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_yhhjm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vdnqm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,14 +16,21 @@ background_mode = 2
 sky = SubResource("Sky_8uury")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_17uyf"]
 points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtwvc"]
+render_priority = 0
+shader = ExtResource("1_votdt")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_k4koo"]
+material = SubResource("ShaderMaterial_rtwvc")
 size = Vector2(100, 100)
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_yhhjm")
 
 [node name="Environment" type="Node" parent="."]
 

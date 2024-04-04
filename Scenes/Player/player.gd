@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 
 const SPEED = 5.0
@@ -7,6 +7,17 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@onready var camera_3d: Camera3D = $Camera3D
+
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * 0.005)
+		camera_3d.rotate_x(-event.relative.y * 0.005)
+		camera_3d.rotation.x = clamp(camera_3d.rotation.x, -PI/2, PI/2)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
