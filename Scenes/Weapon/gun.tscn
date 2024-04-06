@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctgwssqkdtwwi"]
+
+[ext_resource type="Script" path="res://Scenes/Weapon/gun.gd" id="1_o1t0b"]
+[ext_resource type="PackedScene" uid="uid://cd8w2vgi7yc5n" path="res://Scenes/Weapon/projectile.tscn" id="2_4lnet"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cs8om"]
+size = Vector3(0.1, 0.1, 0.4)
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_o1t0b")
+projectileScene = ExtResource("2_4lnet")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+mesh = SubResource("BoxMesh_cs8om")
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.412413)
+
+[node name="ROFTimer" type="Timer" parent="."]
+one_shot = true

@@ -1,16 +1,16 @@
 class_name Enemy extends CharacterBody3D
-
+#TODO Make a better hitbox then $CollisionShape3D and have it move with the animation (so we can do headshots ect)
 
 signal enemy_death(exp:int)
 signal damged_player(dmg:float)
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var health: float = 100.0:
+var health: float = 10.0:
 	set(hp_in):
 		health = hp_in
 		if health <= 0:
 			enemy_death.emit(exp_value)
-			#todo play death animation
+			queue_free() #this would be done at the end of the death animation
 var exp_value: int = 10
 var damage: float = 10.0
 var speed: float = 4.5
@@ -58,3 +58,8 @@ func look_at_target(direction: Vector3) -> void:
 	var adjusted_direction = direction
 	adjusted_direction.y = 0
 	look_at(global_position + adjusted_direction, Vector3.UP,true)
+
+
+func take_damage(damage_received : float) -> void:
+	#do things like play hit sounds/display some hit particles
+	health -= damage_received
