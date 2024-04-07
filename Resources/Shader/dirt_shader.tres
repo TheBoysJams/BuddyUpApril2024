@@ -8,6 +8,7 @@ texture = ExtResource("1_j7iyf")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qc8u5"]
 texture = ExtResource("2_6c22x")
+texture_type = 2
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_snuxd"]
 default_input_values = [1, Vector2(20, 20), 2, Vector2(0, 0)]
@@ -22,7 +23,7 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D tex_frg_2;
-uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_3 : hint_normal;
 
 
 
@@ -58,6 +59,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-271, 131)
 nodes/fragment/0/position = Vector2(700, 120)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_rxoht")
 nodes/fragment/2/position = Vector2(99.3, 200.5)
