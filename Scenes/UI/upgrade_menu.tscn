@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctix46bwdr3pn"]
+[gd_scene load_steps=5 format=3 uid="uid://ctix46bwdr3pn"]
 
 [ext_resource type="Script" path="res://Scenes/UI/upgrade_menu.gd" id="1_ltnfk"]
+[ext_resource type="Resource" uid="uid://bq6h3fd17i0xf" path="res://Resources/Upgrades/Stats/player_speed.tres" id="2_2ltpd"]
+[ext_resource type="Resource" uid="uid://bs4cewuwoasps" path="res://Resources/Upgrades/Stats/projectile_damage.tres" id="3_osq4o"]
+[ext_resource type="Resource" uid="uid://dcmiu7mfbeifa" path="res://Resources/Upgrades/Stats/weapon_rate_of_fire.tres" id="4_u6hq2"]
 
 [node name="UpgradeMenu" type="Control"]
 process_mode = 2
@@ -11,6 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ltnfk")
+player_speed = ExtResource("2_2ltpd")
+projectile_damage = ExtResource("3_osq4o")
+weapon_rate_of_fire = ExtResource("4_u6hq2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -26,18 +32,18 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Speed" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Temp Upgrade 1"
+text = "Speed"
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Damage" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Temp Upgrade 2"
+text = "Damage"
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="Rof" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-text = "Temp Upgrade 3"
+text = "Rate of fire"
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="upgrade_selected"]
-[connection signal="pressed" from="HBoxContainer/Button2" to="." method="upgrade_selected"]
-[connection signal="pressed" from="HBoxContainer/Button3" to="." method="upgrade_selected"]
+[connection signal="pressed" from="HBoxContainer/Speed" to="." method="_on_speed_pressed"]
+[connection signal="pressed" from="HBoxContainer/Damage" to="." method="_on_damage_pressed"]
+[connection signal="pressed" from="HBoxContainer/Rof" to="." method="_on_rof_pressed"]

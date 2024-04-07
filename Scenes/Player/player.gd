@@ -1,7 +1,8 @@
 class_name Player extends CharacterBody3D
 
 
-var speed = 5.0 #TODO Can upgrade
+@export var speed:UpgradeableStat
+
 const JUMP_VELOCITY = 4.5 #TODO Can upgrade (maybe?)
 var total_experience:= 0:
 	set(exp_in):
@@ -19,6 +20,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	speed.current_value = speed.starting_value
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -35,16 +37,14 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("MoveLeft", "MoveRight", "MoveFoward", "MoveBackward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * speed.current_value
+		velocity.z = direction.z * speed.current_value
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed.current_value)
+		velocity.z = move_toward(velocity.z, 0, speed.current_value)
 	move_and_slide()
 
 

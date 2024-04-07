@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6rid1vcpoikx"]
+[gd_scene load_steps=6 format=3 uid="uid://c6rid1vcpoikx"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_t8ml5"]
 [ext_resource type="PackedScene" uid="uid://ctgwssqkdtwwi" path="res://Scenes/Weapon/gun.tscn" id="2_8yrtu"]
+[ext_resource type="Resource" uid="uid://bq6h3fd17i0xf" path="res://Resources/Upgrades/Stats/player_speed.tres" id="2_k3poa"]
 [ext_resource type="PackedScene" uid="uid://ctix46bwdr3pn" path="res://Scenes/UI/upgrade_menu.tscn" id="3_qrohf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rblip"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_t8ml5")
+speed = ExtResource("2_k3poa")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

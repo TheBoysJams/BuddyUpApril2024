@@ -1,13 +1,18 @@
 extends Node3D
 
 
-@export var projectileScene: PackedScene
+@export var projectile_scene: PackedScene
+@export var projectile_damage:UpgradeableStat
+@export var weapon_rate_of_fire:UpgradeableStat
 
-var rate_of_fire:= 4.0 #TODO Can upgrade
 
 @onready var rof_timer: Timer = $ROFTimer
 @onready var muzzle: Marker3D = $Muzzle
 
+
+func _ready() -> void:
+	projectile_damage.current_value = projectile_damage.starting_value
+	weapon_rate_of_fire.current_value = weapon_rate_of_fire.starting_value
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("Shoot") && rof_timer.is_stopped():
@@ -15,9 +20,9 @@ func _process(delta: float) -> void:
 
 
 func shoot() -> void:
-	var shot = projectileScene.instantiate()
+	var shot = projectile_scene.instantiate()
 	add_child(shot)
 	shot.global_position = muzzle.global_position
 	shot.direction = muzzle.global_transform.basis.z
-	shot.damage = 2.0 #TODO make damage a value on the gun so we can upgrade it (or store it in a resouce so it can just be read from the projectiles
-	rof_timer.start(1.0/rate_of_fire)
+	shot.damage = projectile_damage.current_value
+	rof_timer.start(1.0/weapon_rate_of_fire.current_value)

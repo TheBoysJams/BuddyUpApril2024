@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctgwssqkdtwwi"]
+[gd_scene load_steps=6 format=3 uid="uid://ctgwssqkdtwwi"]
 
 [ext_resource type="Script" path="res://Scenes/Weapon/gun.gd" id="1_o1t0b"]
 [ext_resource type="PackedScene" uid="uid://cd8w2vgi7yc5n" path="res://Scenes/Weapon/projectile.tscn" id="2_4lnet"]
+[ext_resource type="Resource" uid="uid://bs4cewuwoasps" path="res://Resources/Upgrades/Stats/projectile_damage.tres" id="3_fyut3"]
+[ext_resource type="Resource" uid="uid://dcmiu7mfbeifa" path="res://Resources/Upgrades/Stats/weapon_rate_of_fire.tres" id="4_3bymo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cs8om"]
 size = Vector3(0.1, 0.1, 0.4)
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_o1t0b")
-projectileScene = ExtResource("2_4lnet")
+projectile_scene = ExtResource("2_4lnet")
+projectile_damage = ExtResource("3_fyut3")
+weapon_rate_of_fire = ExtResource("4_3bymo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)

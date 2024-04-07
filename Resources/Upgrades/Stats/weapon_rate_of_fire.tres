@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeableStat" load_steps=2 format=3 uid="uid://dcmiu7mfbeifa"]
+
+[ext_resource type="Script" path="res://Resources/Upgrades/Stats/upgradeable_stat.gd" id="1_0navc"]
+
+[resource]
+script = ExtResource("1_0navc")
+starting_value = 4.0
+min_value = 4.0
+max_value = 60.0

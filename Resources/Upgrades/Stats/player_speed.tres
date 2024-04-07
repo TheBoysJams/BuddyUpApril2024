@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeableStat" load_steps=2 format=3 uid="uid://bq6h3fd17i0xf"]
+
+[ext_resource type="Script" path="res://Resources/Upgrades/Stats/upgradeable_stat.gd" id="1_vqqks"]
+
+[resource]
+script = ExtResource("1_vqqks")
+starting_value = 5.0
+min_value = 3.0
+max_value = 15.0
