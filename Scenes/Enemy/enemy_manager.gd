@@ -6,6 +6,6 @@ extends Node3D
 
 func _on_timer_timeout() -> void:
 	var enemy = enemy_scene.instantiate()
-	add_child(enemy);
+	add_child(enemy)
 	
 
