@@ -23,6 +23,7 @@ var attack_range: float = 1.5
 
 
 func _ready() -> void:
+	enemy_death.connect(player.experience_gained)
 	set_physics_process(false)
 	call_deferred("_wait_for_nav_agent")
 
