@@ -26,6 +26,7 @@ func _on_speed_pressed() -> void:
 	player_speed.current_value += 1
 	upgrade_selected()
 
+
 func _on_damage_pressed() -> void:
 	projectile_damage.current_value += 5
 	upgrade_selected()

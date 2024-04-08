@@ -64,3 +64,8 @@ func look_at_target(direction: Vector3) -> void:
 func take_damage(damage_received : float) -> void:
 	#do things like play hit sounds/display some hit particles
 	health -= damage_received
+	
+	
+func aberate() -> void:
+	scale = Vector3(2,2,2)
+	#we should also make this one have more hp/damage/exp
