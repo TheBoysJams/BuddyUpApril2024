@@ -8,8 +8,10 @@ signal damged_player(dmg:float)
 	set(hp_in):
 		health = hp_in
 		if health <= 0:
+			set_collision_layer_value(2,false)
+			set_physics_process(false)
 			enemy_death.emit(exp_value)
-			queue_free() #this would be done at the end of the death animation
+			playback.travel("Death")
 @export var speed: float = 4.5
 @export var exp_value: int = 10
 
@@ -63,8 +65,9 @@ func look_at_target(direction: Vector3) -> void:
 
 
 func take_damage(damage_received : float) -> void:
-	#do things like play hit sounds/display some hit particles
-	health -= damage_received
+	if health > 0:
+		#do things like play hit sounds/display some hit particles
+		health -= damage_received
 	
 	
 func aberate() -> void:

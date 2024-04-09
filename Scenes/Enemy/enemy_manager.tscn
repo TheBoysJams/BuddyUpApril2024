@@ -14,7 +14,7 @@ wait_time = 0.25
 autostart = true
 
 [node name="WaveGenerator" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 60.0
 autostart = true
 
 [node name="SpawnPointContainer" type="Node" parent="."]
