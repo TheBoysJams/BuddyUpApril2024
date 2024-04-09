@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyInfo" load_steps=3 format=3 uid="uid://cvcf8vlwb0ouv"]
+
+[ext_resource type="PackedScene" uid="uid://b5nc8ojqclvp3" path="res://Scenes/Enemy/chubby.tscn" id="1_xgc1f"]
+[ext_resource type="Script" path="res://Resources/Enemy/enemy_info.gd" id="2_cff17"]
+
+[resource]
+script = ExtResource("2_cff17")
+enemy_scene = ExtResource("1_xgc1f")
+cost = 2

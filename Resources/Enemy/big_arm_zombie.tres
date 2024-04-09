@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyInfo" load_steps=3 format=3 uid="uid://6poi5efwl8ef"]
+
+[ext_resource type="PackedScene" uid="uid://bq0ns6ov7526d" path="res://Scenes/Enemy/big_arm.tscn" id="1_arsp1"]
+[ext_resource type="Script" path="res://Resources/Enemy/enemy_info.gd" id="2_1t04d"]
+
+[resource]
+script = ExtResource("2_1t04d")
+enemy_scene = ExtResource("1_arsp1")
+cost = 5

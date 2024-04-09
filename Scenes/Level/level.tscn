@@ -61,4 +61,17 @@ mesh = SubResource("PlaneMesh_k4koo")
 skeleton = NodePath("../../../..")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_hopbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -29)
+
+[node name="Marker3D" parent="EnemyManager/SpawnPointContainer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6494, 0.689255, -42.015)
+
+[node name="Marker3D2" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.2851, 0.481341, -44.2099)
+
+[node name="Marker3D3" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5032, 0.493791, 44.4752)
+
+[node name="Marker3D4" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8678, 0.481103, 40.13)
+
+[editable path="EnemyManager"]

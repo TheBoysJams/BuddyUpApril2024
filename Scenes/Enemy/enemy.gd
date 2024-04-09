@@ -4,16 +4,17 @@ class_name Enemy extends CharacterBody3D
 signal enemy_death(exp:int)
 signal damged_player(dmg:float)
 
-var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var health: float = 10.0:
+@export var health: float = 10.0:
 	set(hp_in):
 		health = hp_in
 		if health <= 0:
 			enemy_death.emit(exp_value)
 			queue_free() #this would be done at the end of the death animation
-var exp_value: int = 10
+@export var speed: float = 4.5
+@export var exp_value: int = 10
+
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var damage: float = 10.0
-var speed: float = 4.5
 var attack_range: float = 1.5
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
@@ -67,5 +68,5 @@ func take_damage(damage_received : float) -> void:
 	
 	
 func aberate() -> void:
-	scale = Vector3(2,2,2)
+	scale = Vector3(1.5,1.5,1.5)
 	#we should also make this one have more hp/damage/exp

@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2im7xclfhjca"]
+[gd_scene load_steps=5 format=3 uid="uid://b2im7xclfhjca"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/enemy_manager.gd" id="1_e6t84"]
 [ext_resource type="Resource" uid="uid://dvxbwsjsfuu4t" path="res://Resources/Enemy/basic_zombie.tres" id="2_4hqxb"]
+[ext_resource type="Resource" uid="uid://cvcf8vlwb0ouv" path="res://Resources/Enemy/chubby_zombie.tres" id="3_etfgd"]
+[ext_resource type="Resource" uid="uid://6poi5efwl8ef" path="res://Resources/Enemy/big_arm_zombie.tres" id="4_ox45n"]
 
 [node name="EnemyManager" type="Node3D"]
 script = ExtResource("1_e6t84")
-enemies = Array[Resource("res://Resources/Enemy/enemy_info.gd")]([ExtResource("2_4hqxb")])
+enemies = Array[Resource("res://Resources/Enemy/enemy_info.gd")]([ExtResource("2_4hqxb"), ExtResource("3_etfgd"), ExtResource("4_ox45n")])
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
@@ -14,6 +16,10 @@ autostart = true
 [node name="WaveGenerator" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="SpawnPointContainer" type="Node" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="SpawnPointContainer"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="WaveGenerator" to="." method="generate_wave"]
