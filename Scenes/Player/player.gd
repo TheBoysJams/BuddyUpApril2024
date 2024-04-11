@@ -50,3 +50,7 @@ func _physics_process(delta: float) -> void:
 
 func experience_gained(exp:int) -> void:
 	total_experience += exp
+
+
+func take_damage(damage_in:int) -> void:
+	print("Ouch - %d" %damage_in)

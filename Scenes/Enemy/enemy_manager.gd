@@ -9,6 +9,7 @@ var spawn_points
 
 @onready var wave_generator: Timer = $WaveGenerator
 @onready var spawn_point_container: Node = $SpawnPointContainer
+@onready var player = get_tree().get_first_node_in_group("Player");
 
 
 func _ready() -> void:
@@ -30,6 +31,7 @@ func generate_wave() -> void:
 func _on_timer_timeout() -> void:
 	if enemies_in_wave.size() > 0:
 		var enemy = enemies_in_wave[0].instantiate()
+		enemy.player = player
 		enemies_in_wave.remove_at(0)
 		add_child(enemy)
 		enemy.global_position = get_spawn_location()

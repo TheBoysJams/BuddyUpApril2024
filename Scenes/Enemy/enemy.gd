@@ -14,15 +14,15 @@ signal damged_player(dmg:float)
 			playback.travel("Death")
 @export var speed: float = 4.5
 @export var exp_value: int = 10
+@export var damage: float = 10.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var damage: float = 10.0
 var attack_range: float = 1.5
+var player
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
-@onready var player = get_tree().get_first_node_in_group("Player");
 
 
 func _ready() -> void:
@@ -45,7 +45,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	var direction = global_position.direction_to(next_position)
 	var distance = global_position.distance_to(player.global_position)
-	#if distance is less then the attack range (TODO) then we want to travel to the attack animation, said animation will have a attack function call at the correct spot
 	if distance < attack_range:
 		playback.travel("Punch")
 	if direction:
@@ -58,6 +57,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func attack() -> void:
+	#recheck distance incase player has moved away
+	var distance = global_position.distance_to(player.global_position)
+	if distance < attack_range:
+		player.take_damage(damage)
+
+#stops the enemy from rotating on the y axis
 func look_at_target(direction: Vector3) -> void:
 	var adjusted_direction = direction
 	adjusted_direction.y = 0
@@ -68,8 +74,8 @@ func take_damage(damage_received : float) -> void:
 	if health > 0:
 		#do things like play hit sounds/display some hit particles
 		health -= damage_received
-	
-	
+
+
 func aberate() -> void:
 	scale = Vector3(1.5,1.5,1.5)
-	#we should also make this one have more hp/damage/exp
+	health *= 1.5
