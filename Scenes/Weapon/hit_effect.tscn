@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn8cifabokksa"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c7pgt"]
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+scale_min = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_osexo"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_n4mmu"]
+resource_name = "Emit"
+length = 0.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.249141),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00048437),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkegv"]
+_data = {
+"Emit": SubResource("Animation_n4mmu")
+}
+
+[node name="HitEffect" type="GPUParticles3D"]
+emitting = false
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_c7pgt")
+draw_pass_1 = SubResource("BoxMesh_osexo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qkegv")
+}
+autoplay = "Emit"

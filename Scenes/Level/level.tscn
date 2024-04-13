@@ -23,8 +23,8 @@ tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_17uyf"]
-points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+[sub_resource type="BoxShape3D" id="BoxShape3D_he4kv"]
+size = Vector3(100, 1, 100)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtwvc"]
 render_priority = 0
@@ -54,7 +54,8 @@ environment = SubResource("Environment_pf17v")
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Environment"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_17uyf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_he4kv")
 
 [node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
 mesh = SubResource("PlaneMesh_k4koo")

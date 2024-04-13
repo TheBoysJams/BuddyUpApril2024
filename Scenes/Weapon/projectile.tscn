@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd8w2vgi7yc5n"]
+[gd_scene load_steps=5 format=3 uid="uid://cd8w2vgi7yc5n"]
 
 [ext_resource type="Script" path="res://Scenes/Weapon/projectile.gd" id="1_e8cdy"]
+[ext_resource type="PackedScene" uid="uid://dn8cifabokksa" path="res://Scenes/Weapon/hit_effect.tscn" id="2_beog5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28aqx"]
 size = Vector3(0.05, 0.05, 0.05)
@@ -13,9 +14,8 @@ top_level = true
 collision_layer = 0
 collision_mask = 3
 input_ray_pickable = false
-monitorable = false
-priority = 1
 script = ExtResource("1_e8cdy")
+hit_effect = ExtResource("2_beog5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_28aqx")
