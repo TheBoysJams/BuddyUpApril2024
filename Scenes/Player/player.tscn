@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6rid1vcpoikx"]
+[gd_scene load_steps=7 format=3 uid="uid://c6rid1vcpoikx"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_t8ml5"]
 [ext_resource type="PackedScene" uid="uid://ctgwssqkdtwwi" path="res://Scenes/Weapon/gun.tscn" id="2_8yrtu"]
 [ext_resource type="Resource" uid="uid://bq6h3fd17i0xf" path="res://Resources/Upgrades/Stats/player_speed.tres" id="2_k3poa"]
 [ext_resource type="PackedScene" uid="uid://ctix46bwdr3pn" path="res://Scenes/UI/upgrade_menu.tscn" id="3_qrohf"]
+[ext_resource type="PackedScene" uid="uid://bqew0sakniaqf" path="res://Scenes/UI/game_over.tscn" id="5_khdhp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rblip"]
 
@@ -27,3 +28,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.1
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("3_qrohf")]
 visible = false
+
+[node name="GameOver" parent="." instance=ExtResource("5_khdhp")]
+visible = false
+
+[connection signal="player_died" from="." to="GameOver" method="show_game_over"]

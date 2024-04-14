@@ -2,9 +2,9 @@ class_name Enemy extends CharacterBody3D
 #TODO Make a better hitbox then $CollisionShape3D and have it move with the animation (so we can do headshots ect)
 
 signal enemy_death(exp:int)
-signal damged_player(dmg:float)
+signal damged_player(dmg:int)
 
-@export var health: float = 10.0:
+@export var health: int = 10:
 	set(hp_in):
 		health = hp_in
 		if health <= 0:
@@ -14,10 +14,10 @@ signal damged_player(dmg:float)
 			playback.travel("Death")
 @export var speed: float = 4.5
 @export var exp_value: int = 10
-@export var damage: float = 10.0
+@export var damage: int = 10
+@export var attack_range: float = 1.5
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var attack_range: float = 1.5
 var player
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
@@ -70,10 +70,9 @@ func look_at_target(direction: Vector3) -> void:
 	look_at(global_position + adjusted_direction, Vector3.UP,true)
 
 
-func take_damage(damage_received : float) -> void:
-	if health > 0:
-		#do things like play hit sounds/display some hit particles
-		health -= damage_received
+func take_damage(damage_received : int) -> void:
+	#TODO things like play hit sounds/display some hit particles
+	health -= damage_received
 
 
 func aberate() -> void:

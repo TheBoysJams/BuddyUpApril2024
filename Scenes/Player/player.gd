@@ -1,16 +1,23 @@
 class_name Player extends CharacterBody3D
 
 
+signal player_died(victory:bool)
+
 @export var speed:UpgradeableStat
 
 const JUMP_VELOCITY = 4.5 #TODO Can upgrade (maybe?)
-var total_experience:= 0:
+var health:int= 100:
+	set(hp_in):
+		health = hp_in
+		if health <= 0:
+			player_died.emit(false)
+var total_experience:int= 0:
 	set(exp_in):
 		total_experience = exp_in
 		if total_experience >= experiance_needed_next_level:
 			experiance_needed_next_level *= 1.5 #TODO Replace this with a curve or a table 50,75,112,168,253,379,569
 			upgrade_menu.show_upgrades()
-var experiance_needed_next_level:= 50
+var experiance_needed_next_level:int= 50
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -53,4 +60,6 @@ func experience_gained(exp:int) -> void:
 
 
 func take_damage(damage_in:int) -> void:
+	#TODO add a screenflash or sometihng so the player knows they getting hit
+	health -= damage_in
 	print("Ouch - %d" %damage_in)
