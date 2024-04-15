@@ -1,6 +1,8 @@
 extends Control
 
 
+signal upgraded()
+
 @export var player_speed:UpgradeableStat
 @export var projectile_damage:UpgradeableStat
 @export var weapon_rate_of_fire:UpgradeableStat
@@ -20,7 +22,7 @@ func upgrade_selected() -> void:
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	visible = false
-
+	upgraded.emit()
 
 func _on_speed_pressed() -> void:
 	player_speed.current_value += 1

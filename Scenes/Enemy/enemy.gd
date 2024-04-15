@@ -77,4 +77,4 @@ func take_damage(damage_received : int) -> void:
 
 func aberate() -> void:
 	scale = Vector3(1.5,1.5,1.5)
-	health *= 1.5
+	health = int(health * 1.5)

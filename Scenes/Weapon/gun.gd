@@ -14,7 +14,7 @@ func _ready() -> void:
 	projectile_damage.current_value = projectile_damage.starting_value
 	weapon_rate_of_fire.current_value = weapon_rate_of_fire.starting_value
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("Shoot") && rof_timer.is_stopped():
 		shoot()
 
