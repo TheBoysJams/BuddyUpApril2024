@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dh6exh6n7fif0"]
+[gd_scene load_steps=14 format=3 uid="uid://dh6exh6n7fif0"]
 
 [ext_resource type="PackedScene" uid="uid://c6rid1vcpoikx" path="res://Scenes/Player/player.tscn" id="1_aokbp"]
 [ext_resource type="Shader" uid="uid://26thme6tl0k2" path="res://Resources/Shader/dirt_shader.tres" id="1_votdt"]
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_yhhjm"]
 [ext_resource type="PackedScene" uid="uid://b2im7xclfhjca" path="res://Scenes/Enemy/enemy_manager.tscn" id="5_hopbd"]
+[ext_resource type="PackedScene" uid="uid://djvkhx0erjhso" path="res://Assets/Models/Environment_Cliff3.gltf" id="5_lcxcm"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_55g6w"]
 vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
@@ -34,6 +35,9 @@ shader = ExtResource("1_votdt")
 material = SubResource("ShaderMaterial_rtwvc")
 size = Vector2(100, 100)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6f0xf"]
+size = Vector3(114.567, 17.3193, 1.91125)
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_yhhjm")
 
@@ -61,16 +65,68 @@ shape = SubResource("BoxShape3D_he4kv")
 mesh = SubResource("PlaneMesh_k4koo")
 skeleton = NodePath("../../../..")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.38494, 8.15967, -43.0468)
+shape = SubResource("BoxShape3D_6f0xf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.38494, 8.15967, 44.3289)
+shape = SubResource("BoxShape3D_6f0xf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42.6545, 8.15967, 9.34497)
+shape = SubResource("BoxShape3D_6f0xf")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="NavigationRegion3D/Environment/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.7132, 8.15967, 9.34497)
+shape = SubResource("BoxShape3D_6f0xf")
+
+[node name="Environment_Cliff32" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(2, 0, 0, 0, 3.61626, 0, 0, 0, 9.17813, -50.9631, 0, -23.2114)
+
+[node name="Environment_Cliff37" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-2.01013, 0, 0.410056, 0, 3.61627, 0, -0.0781702, 0, -10.5445, -50.2343, -1.90735e-06, 15.7717)
+
+[node name="Environment_Cliff38" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-0.0272092, 0, 10.5515, 0, 2.71067, 0, -2.01146, 0, -0.142731, -18.8133, -3.8147e-06, 50.6526)
+
+[node name="Environment_Cliff39" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-0.0272092, 0, 10.5515, 0, 2.71067, 0, -2.01146, 0, -0.142731, 29.6018, -3.8147e-06, 50.6526)
+
+[node name="Environment_Cliff40" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(2.01146, 0, 0.142731, 0, 2.71067, 0, -0.0272091, 0, 10.5515, 49.1105, -3.8147e-06, 25.8632)
+
+[node name="Environment_Cliff41" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(2.01146, 0, 0.142731, 0, 2.71067, 0, -0.0272091, 0, 10.5515, 49.0446, -3.8147e-06, -19.7971)
+
+[node name="Environment_Cliff42" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-0.0976024, 0, -10.54, 0, 2.71067, 0, 2.00928, 0, -0.511992, 23.1664, -5.72205e-06, -52.5902)
+
+[node name="Environment_Cliff43" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-0.139975, 0, 10.5269, 0, 2.71067, 0, -2.00677, 0, -0.734263, -14.826, -5.72205e-06, -49.3148)
+
+[node name="Environment_Cliff44" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(-0.131939, 0, 19.1906, 0, 6.02539, 0, -1.89157, 0, -1.33857, 3.48953, -5.72205e-06, -57.6205)
+
+[node name="Environment_Cliff45" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(1.89404, 0, 0.90988, 0, 6.02539, 0, -0.0896848, 0, 19.2157, -67.94, -5.72205e-06, 6.25901)
+
+[node name="Environment_Cliff46" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(0.0404706, 0, -19.2328, 0, 6.02539, 0, 1.89573, 0, 0.410587, -11.0682, -1.90735e-06, 63.5883)
+
+[node name="Environment_Cliff47" parent="NavigationRegion3D/Environment" instance=ExtResource("5_lcxcm")]
+transform = Transform3D(1.8958, 0, 0.378361, 0, 6.02539, 0, -0.0372941, 0, 19.2335, 61.6073, -1.90735e-06, 3.23336)
+
 [node name="EnemyManager" parent="." instance=ExtResource("5_hopbd")]
 
 [node name="Marker3D" parent="EnemyManager/SpawnPointContainer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6494, 0.689255, -42.015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.8228, 0.689255, -40.6097)
 
 [node name="Marker3D2" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.2851, 0.481341, -44.2099)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.3809, 0.481342, -39.9525)
 
 [node name="Marker3D3" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5032, 0.493791, 44.4752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0533, 0.493791, 36.1739)
 
 [node name="Marker3D4" type="Marker3D" parent="EnemyManager/SpawnPointContainer" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.8678, 0.481103, 40.13)
